@@ -146,17 +146,12 @@ public class HashSimulator {
         int collisions = 0;
         int probes = 0;
 
-        for (int i = 0; i < data.length; i++)
-        {
-            String key = data[i];
+        for (String key : data) {
             int index = getHashValue(key, tableSize, functionNumber);
 
-            if (table[index] == null)
-            {
+            if (table[index] == null) {
                 table[index] = key;
-            }
-            else
-            {
+            } else {
                 // One collision maximum per item
                 collisions++;
 
@@ -164,8 +159,7 @@ public class HashSimulator {
 
                 // Count one probe for each bucket examined after the initial collision,
                 // including the empty bucket where insertion finally happens.
-                while (table[probeIndex] != null)
-                {
+                while (table[probeIndex] != null) {
                     probes++;
                     probeIndex = (probeIndex + 1) % tableSize;
                 }
